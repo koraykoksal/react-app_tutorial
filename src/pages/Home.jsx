@@ -4,7 +4,7 @@ import { useEffect,useState } from "react";
 import axios  from "axios";
 const Home = () => {
 
-  const [tutorial, setTutorial] = useState([])
+  const [tutorials, setTutorial] = useState([])
   const BASE_URL="https://tutorial-api.fullstack.clarusway.com/tutorials/"
   
   const getTutorials=async()=>{
@@ -22,7 +22,7 @@ const Home = () => {
     
   }
 
-  console.log(tutorial);
+  console.log(tutorials);
  
   useEffect(() => {
     
@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <>
       <AddTutorial />
-      <TutorialList tutorials={tutorial} />
+      <TutorialList tutorials={tutorials} />
     </>
   );
 };

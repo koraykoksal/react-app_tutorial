@@ -1,10 +1,34 @@
+import axios from "axios"
 import { useState } from "react"
 
 const AddTutorial = () => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
+ 
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-  const handleSubmit = (e) => {}
+    const newTutor = {title:title,description:description}
+
+    postTutorial(newTutor)
+  }
+
+  const postTutorial=async(newTutor)=>{
+    const BASE_URL="https://tutorial-api.fullstack.clarusway.com/tutorials/"
+    
+    try {
+
+      await axios.post(BASE_URL,{newTutor})
+
+    } catch (error) {
+      
+      console.log(error);
+
+    }
+    
+
+  }
+
 
   return (
     <div className="container text-center mt-4">
