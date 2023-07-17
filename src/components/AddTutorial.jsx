@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-const AddTutorial = () => {
+const AddTutorial = ({getTutorials}) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
  
@@ -9,24 +9,26 @@ const AddTutorial = () => {
     e.preventDefault()
 
     const newTutor = {title:title,description:description}
-
     postTutorial(newTutor)
+    setTitle("")
+    setDescription("")
+    
   }
 
   const postTutorial=async(newTutor)=>{
     const BASE_URL="https://tutorial-api.fullstack.clarusway.com/tutorials/"
     
     try {
-
-      await axios.post(BASE_URL,{newTutor})
-
+      //new tutor bir obje olduğu için axios içinde tekrar süslü parantez içine almak gerekmez
+      await axios.post(BASE_URL,newTutor)
+      
     } catch (error) {
       
       console.log(error);
 
     }
     
-
+    getTutorials()
   }
 
 
