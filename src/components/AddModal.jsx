@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import { useState,useEffect } from 'react'
 
@@ -8,6 +9,8 @@ export const AddModal = ({editItem,getTutorials}) => {
     const [title, setTitle] = useState(newTitle)
     const [description, setDescription] = useState(newDescription)
 
+    const BASE_URL='https://tutorial-api.fullstack.clarusway.com/tutorials'
+
     useEffect(() => {
       
       setTitle(newTitle)
@@ -16,6 +19,22 @@ export const AddModal = ({editItem,getTutorials}) => {
     }, [newTitle,newDescription])
     
   
+    const editTutor=async(tutor)=>{
+
+      try {
+        await axios.put(`${BASE_URL}/${id}/`, tutor);
+      } catch (error) {
+        console.log(error);
+      }
+      getTutorials();
+
+    }
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      editTutor({ title, description });
+    };
+
     return (
       <div
         className="modal fade"
@@ -42,7 +61,7 @@ export const AddModal = ({editItem,getTutorials}) => {
               />
             </div>
             <div className="modal-body">
-              <form>
+              <form onClick={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="title" className="form-label">
                     Title
@@ -52,7 +71,7 @@ export const AddModal = ({editItem,getTutorials}) => {
                     className="form-control"
                     id="title"
                     placeholder="Enter your title"
-                    value={title}
+                    value={title || ""}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                   />
@@ -66,7 +85,7 @@ export const AddModal = ({editItem,getTutorials}) => {
                     className="form-control"
                     id="desc"
                     placeholder="Enter your Description"
-                    value={description}
+                    value={description || ""}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                   />
