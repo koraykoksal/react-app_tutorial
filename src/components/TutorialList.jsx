@@ -8,13 +8,13 @@ const TutorialList = ({tutorials,getTutorials}) => {
 
   const [editItem, setEditItem] = useState("")
 
-  const BASE_URL=`https://tutorial-api.fullstack.clarusway.com/tutorials/`
+  const BASE_URL='https://tutorial-api.fullstack.clarusway.com/tutorials'
     
   const handleDelete= async(id)=>{
 
   
     try {
-      await axios.delete(`${BASE_URL}/${id}`)
+      await axios.delete(`${BASE_URL}/${id}/`)
       
     } catch (error) {
       
