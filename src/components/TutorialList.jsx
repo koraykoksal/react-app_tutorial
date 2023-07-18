@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const TutorialList = ({tutorials,getTutorials}) => {
 
+  //editlenmemiş hali
   const [editItem, setEditItem] = useState("")
 
   const BASE_URL='https://tutorial-api.fullstack.clarusway.com/tutorials'
@@ -54,7 +55,7 @@ const TutorialList = ({tutorials,getTutorials}) => {
                     className="me-2 text-warning"
                     data-bs-toggle="modal"
                     data-bs-target="#open-modal"
-                    onClick={()=>setEditItem(item)}
+                    onClick={()=>setEditItem(item)} //editlenmemiş hali
                   />
                   <AiFillDelete
                     size={22}
@@ -68,7 +69,7 @@ const TutorialList = ({tutorials,getTutorials}) => {
           })}
         </tbody>
       </table>
-          <AddModal editItem={editItem}/>
+          <AddModal editItem={editItem} getTutorials={getTutorials}/>
     </div>
   )
 }

@@ -1,12 +1,20 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 
-export const AddModal = ({editItem}) => {
+export const AddModal = ({editItem,getTutorials}) => {
     const { id, description: newDescription, title: newTitle } = editItem
 
     const [title, setTitle] = useState(newTitle)
     const [description, setDescription] = useState(newDescription)
+
+    useEffect(() => {
+      
+      setTitle(newTitle)
+      setDescription(newDescription)
+
+    }, [newTitle,newDescription])
+    
   
     return (
       <div
